@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 body {
-    background: linear-gradient(to bottom, white, #4ade80, white);
-    background-size: cover;
-    height: 100vh;
-    width: 100vw;
+    font-family: "Questrial", serif;
+    background-color:rgb(244, 244, 244);
 }
