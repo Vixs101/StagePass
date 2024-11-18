@@ -90,7 +90,7 @@ export default function NavBar() {
               <Ticket className="inline-block mr-2" size={18} />
               Tickets
             </Link>
-            <button className="flex items-center text-left  bg-gray-800 hover:bg-gray-700 text-white px-3 py-2 rounded-md text-base font-medium w-1/2">
+            <button className="flex items-center text-left  bg-gray-800 hover:bg-gray-700 text-white px-3 py-2 rounded-md text-base font-medium w-1/2 transition-colors">
               <LogIn className="inline-block mr-2" size={18} />
               Login
             </button>
