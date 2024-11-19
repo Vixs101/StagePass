@@ -1,30 +1,37 @@
 import Footer from "../components/Footer"
 import NavBar from "../components/NavBar"
+import { useNavigate } from "react-router-dom"
 
 export default function Component() {
+  const navigate = useNavigate();
+
   const events = [
     {
       title: "Winter Wonder Dance Performance",
       image: "/images/events1.webp",
       date: "Sat, 07 Dec",
       venue: "TSU Theatre",
-      price: "$8",
+      price: "N20",
     },
     {
       title: "Eyes Wide Open: A Theatrical Drama",
       image: "/images/events2.webp",
       date: "Sat, 07 Dec",
       venue: "TSU Black Box Studio",
-      price: "$8",
+      price: "N20",
     },
     {
       title: "Poetry Night: Voices of Tomorrow",
       image: "/images/events3.webp",
       date: "Sat, 07 Dec",
       venue: "TSU Outdoor Amphitheater",
-      price: "$8",
+      price: "N20",
     },
   ]
+
+  function handleClick(){
+    navigate("/events/event-details");
+  }
 
   return (
     <div className="bg-gradient-to-br from-white via-[#4bf44d] to-white">
@@ -52,14 +59,13 @@ export default function Component() {
                 <span className="text-sm">{event.price}</span>
               </span>
             </div>
-            <button className="bg-gray-800 hover:bg-gray-700 text-white px-6 py-2 rounded-md transition-colors mt-auto">
+            <button onClick={handleClick} className="bg-gray-800 hover:bg-gray-700 text-white px-6 py-2 rounded-md transition-colors mt-auto">
               Buy Tickets
             </button>
           </div>
         ))}
       </div>
     </div>
-    <hr className="h-1 bg-gray-800 mx-5 md:mx-28 my-5 rounded-lg" />
     <Footer/>
     </div>
   )

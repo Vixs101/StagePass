@@ -3,8 +3,14 @@ import { TiStarburst } from "react-icons/ti";
 import { GiPolarStar } from "react-icons/gi";
 import { GiJusticeStar } from "react-icons/gi";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/events'); 
+  }
   return (
     <div className="flex flex-col gap-10 md:gap-20 bg-gradient-to-br from-white via-[#4bf44d] to-white">
       <NavBar />
@@ -21,7 +27,7 @@ export default function Home() {
               secure your tickets for unforgettable performances.
             </p>
           </div>
-          <button className="bg-gray-800 p-4 text-white hover:bg-gray-700 w-full md:w-1/2 xl:w-1/4 rounded-md place-self-center xl:place-self-start">
+          <button className="bg-gray-800 p-4 text-white hover:bg-gray-700 w-full md:w-1/2 xl:w-1/4 rounded-md place-self-center xl:place-self-start" onClick={handleClick}>
             Explore
           </button>
         </div>
@@ -91,7 +97,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <hr className="h-1 bg-gray-800 mx-5 md:mx-28 rounded-lg" />
       <Footer/>
     </div>
   );

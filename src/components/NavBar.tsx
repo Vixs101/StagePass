@@ -1,10 +1,14 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, Home, Calendar, Ticket, LogIn } from "lucide-react";
+import { Menu, X, Home, Calendar, Ticket, LogIn } from 'lucide-react';
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
   return (
     <nav className="fixed w-full bg-gray-50 z-10">
@@ -41,7 +45,10 @@ export default function NavBar() {
                   Tickets
                 </Link>
               </li>
-              <button className="bg-gray-800 py-2 px-3 rounded-md text-sm font-medium text-white hover:bg-gray-700">
+              <button
+                onClick={toggleModal}
+                className="bg-gray-800 py-2 px-3 rounded-md text-sm font-medium text-white hover:bg-gray-700"
+              >
                 Login
               </button>
             </ul>
@@ -89,9 +96,27 @@ export default function NavBar() {
               <Ticket className="inline-block mr-2" size={18} />
               Tickets
             </Link>
-            <button className="flex items-center text-left  bg-gray-800 hover:bg-gray-700 text-white px-3 py-2 rounded-md text-base font-medium w-1/2 transition-colors">
+            <button
+              onClick={toggleModal}
+              className="flex items-center text-left bg-gray-800 hover:bg-gray-700 text-white px-3 py-2 rounded-md text-base font-medium w-1/2 transition-colors"
+            >
               <LogIn className="inline-block mr-2" size={18} />
               Login
+            </button>
+          </div>
+        </div>
+      )}
+
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full mx-4">
+            <h3 className="text-lg font-semibold mb-2">Login Feature</h3>
+            <p className="text-gray-600 mb-4">This feature is not yet available.</p>
+            <button
+              onClick={toggleModal}
+              className="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors w-full"
+            >
+              Close
             </button>
           </div>
         </div>
