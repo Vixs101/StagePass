@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, Home, Calendar, Ticket, LogIn } from 'lucide-react';
+import { Menu, X, Home, Calendar, Ticket, } from 'lucide-react';
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  const [user, setUser] = useState(() => {
+  const [user] = useState(() => {
     // Retrieve from localStorage on initial render
     const savedUser = localStorage.getItem("user");
     return savedUser ? JSON.parse(savedUser) : null;

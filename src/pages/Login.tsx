@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
 import WelcomeModal from "../components/welcome-modal";
 
 export default function AuthPage() {
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [, setSearchParams] = useSearchParams();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showModal, setShowModal] = useState(false);
