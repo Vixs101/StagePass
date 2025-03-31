@@ -6,6 +6,12 @@ export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
+  const [user, setUser] = useState(() => {
+    // Retrieve from localStorage on initial render
+    const savedUser = localStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
+
   const toggleModal = () => {
     setShowModal(!showModal);
   };
@@ -20,7 +26,7 @@ export default function NavBar() {
             </Link>
           </div>
           <div className="hidden md:block">
-            <ul className="ml-10 flex items-baseline space-x-4 text-xl font-semibold">
+            <ul className="ml-10 flex space-x-4 text-xl font-semibold items-center">
               <li>
                 <Link
                   to="/"
@@ -45,19 +51,33 @@ export default function NavBar() {
                   Tickets
                 </Link>
               </li>
-              <button
-                onClick={toggleModal}
-                className="bg-gray-800 py-2 px-3 rounded-md text-sm font-medium text-white hover:bg-gray-700"
-              >
-                Login
-              </button>
+              {user ? (
+                <>
+                  <img
+                    src={user.avatar}
+                    alt={user.username}
+                    className="w-8 h-8 rounded-full"
+                  />
+                </>
+              ) : (
+                <Link
+                  to="/login">
+                  <button
+                    onClick={toggleModal}
+                    className="bg-gray-800 py-2 px-3 rounded-md text-sm font-medium text-white hover:bg-gray-700"
+                  >
+                    Login
+                  </button>
+                </Link>
+              )}
+
             </ul>
           </div>
           <div className="-mr-2 flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="inline-flex items-center justify-center p-5 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              className="inline-flex items-center justify-center p-5 rounded-md text-gray-400 hover:text-white "
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
@@ -96,31 +116,30 @@ export default function NavBar() {
               <Ticket className="inline-block mr-2" size={18} />
               Tickets
             </Link>
-            <button
-              onClick={toggleModal}
-              className="flex items-center text-left bg-gray-800 hover:bg-gray-700 text-white px-3 py-2 rounded-md text-base font-medium w-1/2 transition-colors"
-            >
-              <LogIn className="inline-block mr-2" size={18} />
-              Login
-            </button>
+            {user ? (
+              <>
+                <img
+                  src={user.avatar}
+                  alt={user.username}
+                  className="w-8 h-8 rounded-full"
+                />
+              </>
+            ) : (
+              <Link
+                to="/login">
+                <button
+                  onClick={toggleModal}
+                  className="bg-gray-800 py-2 px-3 rounded-md text-sm font-medium text-white hover:bg-gray-700"
+                >
+                  Login
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       )}
 
-      {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full mx-4">
-            <h3 className="text-lg font-semibold mb-2">Login Feature</h3>
-            <p className="text-gray-600 mb-4">This feature is not yet available.</p>
-            <button
-              onClick={toggleModal}
-              className="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors w-full"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+
     </nav>
   );
 }
